@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename Java project &apos;computer-database&apos; to &apos;CDB&apos;&#x0A;- Original element: &apos;computer-database&apos;&#x0A;- Renamed element: &apos;computer-database&apos;&#x0A;- Update references to refactored element" description="Rename Java project &apos;computer-database&apos;" flags="7" id="org.eclipse.jdt.ui.rename.java.project" input="=computer-database" name="CDB" references="true" stamp="1620397467348" version="1.0"/>
+</session>
