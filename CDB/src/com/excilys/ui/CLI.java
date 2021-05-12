@@ -1,11 +1,15 @@
 package com.excilys.ui;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
+import com.excilys.model.Company;
 import com.excilys.model.Computer;
 import com.excilys.persistence.Dao;
+import com.excilys.service.Service;
 
 public class CLI {
 	
@@ -13,7 +17,7 @@ public class CLI {
 		
 	}
 	
-	public void affichageUtilisateur() throws IOException {
+	public void affichageUtilisateur() throws IOException, SQLException {
 		
 		String url = "jdbc:mysql://127.0.0.1:3306/computer-database-db";
 		String name = "admincdb";
@@ -24,6 +28,8 @@ public class CLI {
 		Dao base = new Dao(url,name,passwd);
 		base.connection();
 		Scanner sc = new Scanner(System.in);
+		Service services = Service.getInstance("Mon Service");
+		
 		
 		
 		do{
@@ -47,19 +53,24 @@ public class CLI {
 				}
 				case 1:{
 					System.out.println("Voici la liste des ordinateurs :");
-					base.afficherListeComputer();
+					List <Computer> computers = services.showListComputer();
+					for(Computer pc : computers)
+						System.out.println(pc);
 					break;
 				}
+				
 				case 2:{
 					System.out.println("Voici la liste des compagnies :");
-					base.afficherListeCompagnies();
+					List <Company> companies = services.showListCompany();
+					for(Company comp : companies)
+						System.out.println(comp);
 					break;
 				}
 				case 3:{
 					System.out.println("Veuillez entrer l'id de l'ordinateur souhaité");
 					Scanner scan_id = new Scanner(System.in);
 					int id = scan_id.nextInt();
-					base.afficherUnComputer(id);
+					System.out.println(services.showOneComputer(id));
 					break;
 					
 				}
@@ -87,11 +98,10 @@ public class CLI {
 					
 					LocalDate entree_pc1 = LocalDate.of(year_entry,month_entry,day_entry);
 					LocalDate sortie_pc1 = LocalDate.of(year_out,month_out,day_out);
-					Computer new_computer = new Computer(name_computer,id_ordi,entree_pc1,sortie_pc1);
-					base.ajouterUnComputer(new_computer);
+					
+					services.ajouterComputer(name_computer, entree_pc1, sortie_pc1, id_ordi);
 					break;
-					
-					
+						
 				}
 				case 5:{
 					Scanner scan5 = new Scanner(System.in);
@@ -105,7 +115,7 @@ public class CLI {
 							System.out.println("Entrez un nom d'ordinateur");
 						    Scanner scan_ordi = new Scanner(System.in);
 						    String name_computer = scan_ordi.nextLine();
-						    base.updateComputer(id_fixe, colonne, name_computer);
+						    services.changerInfoComputer(id_fixe, colonne, name_computer);
 						    break;
 						}
 						case 3:{
@@ -117,7 +127,7 @@ public class CLI {
 							System.out.println("Entrez l'année d'entrée de cet ordinateur");
 							int year_entry = scan_ordi.nextInt();
 							LocalDate entree_pc = LocalDate.of(year_entry,month_entry,day_entry);
-							base.updateComputer(id_fixe, colonne, entree_pc);
+							services.changerInfoComputer(id_fixe, colonne, entree_pc);
 							break;
 							
 						}
@@ -129,15 +139,15 @@ public class CLI {
 							int month_entry = scan_ordi.nextInt();
 							System.out.println("Entrez l'année de sortie de cet ordinateur");
 							int year_entry = scan_ordi.nextInt();
-							LocalDate entree_pc = LocalDate.of(year_entry,month_entry,day_entry);
-							base.updateComputer(id_fixe, colonne, entree_pc);
+							LocalDate sortie_pc = LocalDate.of(year_entry,month_entry,day_entry);
+							services.changerInfoComputer(id_fixe, colonne,sortie_pc);
 							break;
 						}
 						case 5:{
 							System.out.println("Entrez l'id de la compagnie");
 							Scanner scan_ordi = new Scanner(System.in);
 							int id_comp = scan_ordi.nextInt();
-							base.updateComputer(id_fixe, colonne,id_comp);
+							services.changerInfoComputer(id_fixe, colonne, id_comp);
 							break;
 						}
 					}	
@@ -147,7 +157,7 @@ public class CLI {
 					System.out.println("Entrez l'id de l'ordinateur a enlever.");
 					Scanner scan_ordi = new Scanner(System.in);
 					int id_comp = scan_ordi.nextInt();
-					base.deleteComputer(id_comp);
+					services.effacerComputer(id_comp);
 					break;
 					
 				

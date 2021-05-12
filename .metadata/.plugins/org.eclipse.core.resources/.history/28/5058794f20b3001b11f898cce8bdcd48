@@ -1,0 +1,39 @@
+package com.excilys.service;
+
+import java.util.List;
+
+import com.excilys.model.*;
+import com.excilys.persistence.Dao;
+import com.excilys.persistence.*;
+
+
+public final class Service {
+	
+	    private static Service instance;
+	    public String value;
+
+	    private Service(String value) {
+
+	        try {
+	            Thread.sleep(1000);
+	        } catch (InterruptedException ex) {
+	            ex.printStackTrace();
+	        }
+	        this.value = value;
+	    }
+
+	    public static Service getInstance(String value) {
+	        if (instance == null) {
+	            instance = new Service(value);
+	        }
+	        return instance;
+	    }
+	
+	public List <Computer> showListComputer(Dao connexion){
+		
+		return connexion.ListeComputer();
+		
+	}
+	
+	
+}

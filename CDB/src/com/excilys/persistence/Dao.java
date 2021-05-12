@@ -1,8 +1,12 @@
 package com.excilys.persistence;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.sql.*;
+
+import com.excilys.model.Company;
 import com.excilys.model.Computer;
+import com.excilys.mapper.*;
 
 public class Dao {
 	// Properties
@@ -10,6 +14,7 @@ public class Dao {
 	private String login;
 	private String passwd;
 	private Connection con = null;
+	private Mapper mappy;
 	
 	// Query
 	private static final String AJOUT_ONE_COMPUTER = "INSERT INTO computer (name,introduced,discontinued,company_id) VALUES(?,?,?,?);";
@@ -26,7 +31,8 @@ public class Dao {
 		this.url = url;
 		this.login = login;
 		this.passwd = passwd;
-
+		this.mappy=new Mapper();
+		
 	}
 
 	public void connection() {
@@ -41,7 +47,81 @@ public class Dao {
 		     
 	}
 	
+	//Renvoie la liste des PC
 	
+	public List <Computer> ListeComputer() throws SQLException {
+		String query = "SELECT * FROM computer;";
+		ResultSet results=null;
+		
+		try {
+			Statement stmt = this.con.createStatement();
+			results = stmt.executeQuery(query);
+		}catch(Exception e) {
+			System.out.println(e+"exception due a la requete");
+		}
+			
+		return this.mappy.dataToListComputer(results);
+	}
+	
+	//Renvoie la liste des compagnies
+	public List<Company> ListeCompanies() throws SQLException {
+		String query = "SELECT * FROM company;";
+		ResultSet results=null;
+		
+		try {
+			Statement stmt = this.con.createStatement();
+			results = stmt.executeQuery(query);
+		}catch(Exception e) {
+			System.out.println(e+"exception due a la requete");
+		}
+			
+		return this.mappy.dataToListCompany(results);
+	}
+	
+	//renvoie un seul pc en fonction de son ID
+	public Computer OneComputer(int id) throws SQLException {
+		String query = "SELECT * FROM computer WHERE id="+id+";";
+		ResultSet results=null;
+
+		try {
+			Statement stmt = this.con.createStatement();
+			results = stmt.executeQuery(query);
+		}
+		catch(Exception e)
+			{System.out.println(e+"exception due a la requete");
+		}
+		return this.mappy.dataToComputer(results);
+				
+	}
+	
+	public void ajouterUnComputer(Computer c) {
+		
+		String name = c.getName();
+		LocalDate date_entree_pc = c.getEntryDate();
+		LocalDate date_sortie_pc=c.getOutDate();
+		int company_id = c.getIdCompany();
+		try {
+			PreparedStatement ps = this.con.prepareStatement(AJOUT_ONE_COMPUTER);
+			
+			ps.setString(1,name);
+			ps.setDate(2, Date.valueOf(date_entree_pc));
+			ps.setDate(3, Date.valueOf(date_sortie_pc));			
+			ps.setInt(4, company_id);
+			ps.executeUpdate();
+			
+		}
+		catch(Exception e)
+			{System.out.println(e+"exception due a la requete");
+		}
+	}
+	
+	
+	
+		
+		
+		
+		
+/*
 	public void afficherListeComputer() {
 		String query = "SELECT * FROM computer;";
 		ResultSet results;
@@ -109,7 +189,9 @@ public class Dao {
 		}
 
 	}
+	*/
 	
+	/*
 	// Gérer les dates fixer à null pour l'ajout
 	public void ajouterUnComputer(Computer c) {
 	
@@ -132,7 +214,7 @@ public class Dao {
 			{System.out.println(e+"exception due a la requete");
 		}
 	}
-		
+		*/
 	
 	// Cette méthode permet d'update un computer selon son id, on doit séletionner le champ à changer et sa valeur.
 	// A Ajouter : test sur les classes des chhamps

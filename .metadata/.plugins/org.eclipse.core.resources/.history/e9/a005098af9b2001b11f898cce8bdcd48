@@ -1,0 +1,21 @@
+package com.excilys.mapper;
+
+import java.sql.ResultSet;
+import java.time.LocalDate;
+
+import com.excilys.model.Computer;
+
+public class Mapper {
+	
+	public Mapper() {
+		
+	}
+	
+	public Computer dateToComputer(ResultSet data) {
+		
+		Computer pc;
+		name = date.nextInt()
+		public Computer(String name,int company_id,LocalDate dateEntree, LocalDate dateSortie) {
+	}
+
+}

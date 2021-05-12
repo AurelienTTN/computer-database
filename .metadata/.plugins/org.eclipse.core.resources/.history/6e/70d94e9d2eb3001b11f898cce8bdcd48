@@ -1,0 +1,59 @@
+package com.excilys.service;
+
+import java.sql.SQLException;
+import java.util.List;
+
+import com.excilys.model.*;
+import com.excilys.persistence.Dao;
+
+
+public final class Service {
+	
+	    private static Service instance;
+	    public String value;
+	    private Dao base;
+
+	    private Service(String value) {
+
+	        try {
+	            Thread.sleep(1000);
+	        } catch (InterruptedException ex) {
+	            ex.printStackTrace();
+	        }
+	        this.value = value;
+	        
+	        String url = "jdbc:mysql://127.0.0.1:3306/computer-database-db";
+			String name = "admincdb";
+			String passwd = "qwerty1234";
+					
+			this.base = new Dao(url,name,passwd);
+			this.base.connection();      
+	    }
+
+	    public static Service getInstance(String value) {
+	        if (instance == null) {
+	            instance = new Service(value);
+	        }
+	        return instance;
+	    }
+	    
+	    
+	
+	public List <Computer> showListComputer() throws SQLException{
+		
+		return this.base.ListeComputer();
+		
+	}
+	
+	public List <Company> showListCompany() throws SQLException{
+		
+		return this.base.ListeCompanies();
+	}
+	
+	public Computer showOneComputer(int id)throws SQLException{
+		
+		return this.base.OneComputer(id);
+	} 
+	
+	
+}
