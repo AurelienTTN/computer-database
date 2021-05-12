@@ -1,0 +1,25 @@
+package com.excilys.ui;
+
+public class CLI {
+	
+	public void CLI() {
+		
+	}
+	
+	public void affichageUtilisateur() {
+		
+		System.out.println("Que voulez vous faire ? Tapez le numéro correspondant à votre requête \n");
+		System.out.println("Afficher la liste des ordinateurs - 1 \n");
+		System.out.println("Afficher la liste des compagnies - 2 \n");
+		System.out.println("Afficher un ordinateur en particulier - 3 \n");
+		System.out.println("Ajouter un nouvel ordinateur - 4 \n");
+		System.out.println("Mettre à jour un certain ordianteur - 5 \n");
+		System.out.println("Effacer un ordinateur - 6 \n");
+		
+		
+		
+		
+	}
+	
+
+}

@@ -1,0 +1,44 @@
+package com.excilys.model;
+
+import java.time.LocalDate;
+
+public class Computer {
+	
+	private String name;
+	private int company_id;
+	private LocalDate dateEntree;
+	private LocalDate dateSortie;
+	
+	public Computer(String name,int company_id,LocalDate dateEntree, LocalDate dateSortie) {
+		this.name = name;
+		this.company_id = company_id;
+		System.out.println("ça construit biengue");
+		
+		if (dateEntree.isBefore(dateSortie)){
+			this.dateEntree=dateEntree;
+			this.dateSortie=dateSortie;
+		}
+		else {
+			System.out.println("les dates ne sont pas bonnes, elles seront instanciées null.");
+			this.dateEntree=null;
+			this.dateSortie=null;
+		}
+	}
+	
+	public String getName(Computer c) {
+		return c.name;
+	}
+	
+	public int getIdCompany(Computer c) {
+		return c.company_id;
+	}
+	
+	public LocalDate getEntryDate(Computer c) {
+		return c.dateEntree;
+	}
+	
+	public LocalDate getOutDate(Computer c) {
+		return c.dateSortie;
+	}
+	
+}

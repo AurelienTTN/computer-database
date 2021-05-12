@@ -1,0 +1,11 @@
+import com.excylis.ui.CLI;
+
+public class Main {
+
+	public static void main(String[] args) {
+		CLI fenetre = new CLI();
+		
+
+	}
+
+}

@@ -1,0 +1,64 @@
+package com.excilys.ui;
+
+import java.io.IOException;
+
+import java.util.Scanner;
+
+import com.excilys.persistence.Dao;
+
+public class CLI {
+	
+	public void CLI() {
+		
+	}
+	
+	public void affichageUtilisateur() throws IOException {
+		
+		String url = "jdbc:mysql://127.0.0.1:3306/computer-database-db";
+		String name = "admincdb";
+		String passwd = "qwerty1234";
+		
+		boolean decision = true;
+		Dao base = new Dao(url,name,passwd);
+		base.connection();
+		
+		
+		while (decision) {
+			System.out.println("Que voulez vous faire ? Tapez le numéro correspondant à votre requête \n");
+			System.out.println("Afficher la liste des ordinateurs - 1 ");
+			System.out.println("Afficher la liste des compagnies - 2 ");
+			System.out.println("Afficher un ordinateur en particulier - 3 ");
+			System.out.println("Ajouter un nouvel ordinateur - 4 ");
+			System.out.println("Mettre à jour un certain ordinateur - 5 ");
+			System.out.println("Effacer un ordinateur - 6\n");
+			System.out.println("Quitter - 0\n");
+			
+			System.out.println("Faites votre choix :");
+			
+			Scanner sc = new Scanner(System.in);
+			int choix = sc.nextInt();
+			
+			switch(choix) {
+				case 0:{
+					decision=false;
+					break;
+				}
+				case 1:{
+					System.out.println("Voici la liste des ordinateurs :");
+					
+				}
+	
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+
+}

@@ -1,0 +1,17 @@
+package com.excylis.ui;
+
+public class CLI {
+	
+	public void class CLI () {
+	}
+	
+	public void CLI_UI() {
+		
+		System.out.println("Que voulez vous faire ? \n");
+		
+		
+		
+	}
+	
+
+}

@@ -1,0 +1,12 @@
+import com.excilys.ui.CLI;
+
+public class Main {
+
+	public static void main(String[] args) {
+		CLI fenetre = new CLI();
+		fenetre.affichageUtilisateur();
+		
+
+	}
+
+}

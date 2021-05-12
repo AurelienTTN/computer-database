@@ -1,0 +1,15 @@
+package com.excilys.persistence;
+
+
+public class Main {
+
+	public static void main(String[] args) {
+		String url = "jdbc:mysql://127.0.0.1:3306/computer";
+		String name = "admincdb";
+		String passwd = "qwerty1234"
+		Dao base = new Dao(url,name,passwd);
+		
+
+	}
+
+}

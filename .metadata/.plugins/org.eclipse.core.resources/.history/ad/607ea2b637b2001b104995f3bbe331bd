@@ -1,0 +1,18 @@
+package com.excilys.ui;
+
+public class CLI {
+	
+	public void CLI() {
+		
+	}
+	
+	public void affichageUtilisateur() {
+		
+		System.out.println("Que voulez vous faire ? \n");
+		
+		
+		
+	}
+	
+
+}
