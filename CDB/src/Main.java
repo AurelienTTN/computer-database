@@ -2,13 +2,16 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import com.excilys.ui.CLI;
+import com.excilys.ui.MenuCLI;
 
 public class Main {
 
 	public static void main(String[] args) throws IOException, SQLException {
-		CLI fenetre = new CLI();
-		fenetre.affichageUtilisateur();
 		
+		MenuCLI menu = MenuCLI.getInstance();
+		while(true) {
+			menu.useMenu();
+		}
 
 	}
 

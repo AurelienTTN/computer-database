@@ -1,51 +1,44 @@
 package com.excilys.model;
 
-import com.excilys.mapper.Mapper;
-import com.excilys.persistence.Dao;
-import com.excilys.service.Service;
 
 public class Page {
 	
-	private static final int NB_LIGNE=20;
+	private final int NB_LIGNE=20;
 	private int nb_element;
-	private int nb_page_max;
+	private int numero_page;
 	
-	private static Page instance;
 	 
 	
-	 private Page(int nb_element) {
-
-		        try {
-		            Thread.sleep(1000);
-		        } catch (InterruptedException ex) {
-		            ex.printStackTrace();
-		        }
-		        this.nb_element = nb_element;
-		        if((nb_element % NB_LIGNE) == 0)
-		        	this.nb_page_max = nb_element/NB_LIGNE;
-		        else
-		        	this.nb_page_max = nb_element/NB_LIGNE + 1;
+	 public Page(int nb_element) {
+		   this.nb_element = nb_element;
+		   this.numero_page = 1;
 	 }
 
-
-	public static Page getInstance(int nb_element) {
-	    if (instance == null) {
-	        instance = new Page(nb_element);
-	    }
-	    return instance;
+	public void getPagePrecedente() {
+		this.numero_page--;
 	}
 	
-	public int[] getIndex(int num_page) {
-		
-		int index_1=num_page*NB_LIGNE-NB_LIGNE;
-		int index_2=index_1+NB_LIGNE;
-		if(index_2>nb_element) {
-			index_2=nb_element;
-		}
-		int index[]= {index_1,index_2};
-		return index;
+	public void getPageSuivante() {
+		this.numero_page++;
+	}
+	
+	public void setNumPage(int num) {
+		this.numero_page=num;
+	}
+	
+	public int getNumeroPage() {
+		return this.numero_page;
+	}
+	
+	public int getMaxElement() {
+		return this.nb_element;
+	}
+	
+	public int getNBElementParPage() {
+		return NB_LIGNE;
 	}
 	
 	
-
+	
+	
 }

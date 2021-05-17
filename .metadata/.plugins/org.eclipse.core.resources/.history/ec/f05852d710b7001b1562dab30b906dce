@@ -1,0 +1,29 @@
+package com.excylis.controlers;
+
+import com.excilys.service.Service;
+
+public class ComputerCtr {
+	
+
+	private static ComputerCtr instance;
+	private Service service;
+
+	
+	private ComputerCtr() {
+		this.service = Service.getInstance();
+		
+	}
+	
+	public static ComputerCtr getInstance() {
+	       if (instance == null) {
+	            instance = new ComputerCtr();
+	        }
+	        return instance;
+	    }
+	
+	public void afficherListeComputer(){
+		List 
+		return null;
+	}
+
+}

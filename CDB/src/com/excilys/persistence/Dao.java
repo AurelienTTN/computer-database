@@ -1,11 +1,13 @@
 package com.excilys.persistence;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
 
 import com.excilys.model.Company;
 import com.excilys.model.Computer;
+import com.excilys.service.Service;
 import com.excilys.mapper.*;
 
 public class Dao {
@@ -15,6 +17,7 @@ public class Dao {
 	private String passwd;
 	private Connection con = null;
 	private Mapper mappy;
+	private static Dao instance;
 	
 	// Query
 	private static final String AJOUT_ONE_COMPUTER = "INSERT INTO computer (name,introduced,discontinued,company_id) VALUES(?,?,?,?);";
@@ -27,13 +30,20 @@ public class Dao {
 	private static final String DELETE_COMPUTER = "DELETE FROM computer WHERE id=?";
 
 	// Constructor
-	public Dao(String url, String login, String passwd) {
+	private Dao(String url, String login, String passwd) {
 		this.url = url;
 		this.login = login;
 		this.passwd = passwd;
 		this.mappy=new Mapper();
 		
 	}
+	
+	public static Dao getInstance(String url,String login,String passwd) {
+        if (instance == null) {
+            instance = new Dao(url,login,passwd);
+        }
+        return instance;
+    }
 
 	public void connection() {
 		
@@ -47,83 +57,91 @@ public class Dao {
 		     
 	}
 	
-	public int nombreOrdinateur() throws SQLException {
-		String query = "SELECT * FROM computer;";
+	public int getNombreTotalOrdinateur() {
+		String query = "SELECT COUNT(*) as numero FROM computer;";
 		ResultSet results = null;
 		int count=0;
 		try {
 			Statement stmt = this.con.createStatement();
 			results = stmt.executeQuery(query);
-			while(results.next()) {
-				count++;
-			}
+			results.next();
+			count = results.getInt("numero");
 		}catch(Exception e) {
 			System.out.println(e+"exception due a la requete");
 		}
 
 		return count;
 	}
-		
-
 	
-	public List <Computer> listeSpecifiquesComputers(int debut,int fin) throws SQLException {
-		String query = "SELECT * FROM computer WHERE id BETWEEN "+debut+" AND "+fin+";";
+	
+		
+	public List <Computer> listeSpecifiquesComputers(int debut,int nombre) {
+		String query = "SELECT * FROM computer WHERE id LIMIT "+debut+","+nombre+";";
 		ResultSet results=null;
+		List<Computer> computers = new ArrayList<>();
 		
 		try {
 			Statement stmt = this.con.createStatement();
 			results = stmt.executeQuery(query);
+			computers = this.mappy.dataToListComputer(results);
 		}catch(Exception e) {
 			System.out.println(e+"exception due a la requete");
 		}
 			
-		return this.mappy.dataToListComputer(results);
+		return computers;
 	}
 	
 	//Renvoie la liste des PC
 	
-	public List <Computer> listeComputer() throws SQLException {
+	public List <Computer> listeComputer() {
 		String query = "SELECT * FROM computer;";
 		ResultSet results=null;
-		
+		List<Computer> computers = new ArrayList<>();
 		try {
 			Statement stmt = this.con.createStatement();
 			results = stmt.executeQuery(query);
+			computers = this.mappy.dataToListComputer(results);
 		}catch(Exception e) {
 			System.out.println(e+"exception due a la requete");
 		}
 			
-		return this.mappy.dataToListComputer(results);
+		return computers;
 	}
 	
 	//Renvoie la liste des compagnies
-	public List<Company> listeCompanies() throws SQLException {
+	
+	public List<Company> listeCompanies() {
 		String query = "SELECT * FROM company;";
 		ResultSet results=null;
+		List<Company> companies = new ArrayList<>();
 		
 		try {
 			Statement stmt = this.con.createStatement();
 			results = stmt.executeQuery(query);
+			companies = this.mappy.dataToListCompany(results);
 		}catch(Exception e) {
 			System.out.println(e+"exception due a la requete");
 		}
 			
-		return this.mappy.dataToListCompany(results);
+		return companies;
 	}
 	
 	//renvoie un seul pc en fonction de son ID
-	public Computer oneComputer(int id) throws SQLException {
+	
+	public Computer oneComputer(int id) {
 		String query = "SELECT * FROM computer WHERE id="+id+";";
 		ResultSet results=null;
+		Computer computer = null;
 
 		try {
 			Statement stmt = this.con.createStatement();
 			results = stmt.executeQuery(query);
+			computer = this.mappy.dataToComputer(results);
 		}
 		catch(Exception e)
 			{System.out.println(e+"exception due a la requete");
 		}
-		return this.mappy.dataToComputer(results);
+		return computer;
 				
 	}
 	
@@ -151,6 +169,7 @@ public class Dao {
 	
 	
 	// Mets à jour le champ spécifié par l'utilisateur
+	
 	public void updateComputer(int id, int colonne, Object value) {
 		
 		

@@ -1,0 +1,21 @@
+package com.excilys.ui;
+
+import com.excilys.service.Service;
+import com.excylis.controlers.ComputerCtr;
+
+public class ChoixUtilisateur {
+
+	private static ChoixUtilisateur instance;
+	
+	private ChoixUtilisateur() {
+		
+	}
+	
+	public static ChoixUtilisateur getInstance() {
+	       if (instance == null) {
+	            instance = new ChoixUtilisateur();
+	        }
+	        return instance;
+	    }
+	
+}

@@ -1,0 +1,23 @@
+package controlers;
+
+import com.excilys.service.Service;
+
+public class CLIControler {
+	
+	private static CLIControler instance;
+
+	
+	public CLIControler() {
+		
+	}
+	
+	public static Service getInstance() {
+	       if (instance == null) {
+	            instance = new CLIControler();
+	        }
+	        return instance;
+	    }
+	
+	
+	    
+}

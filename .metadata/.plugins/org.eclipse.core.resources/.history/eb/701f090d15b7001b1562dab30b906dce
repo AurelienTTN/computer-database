@@ -1,0 +1,41 @@
+package com.excylis.controlers;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.excilys.model.Computer;
+import com.excilys.service.Service;
+import com.excilys.ui.ComputerCLI;
+
+public class ComputerCtr {
+	
+
+	private static ComputerCtr instance;
+	private Service service;
+	private ComputerCLI computerCLI;
+
+	
+	private ComputerCtr() {
+		this.service = Service.getInstance();
+		this.computerCLI = ComputerCLI.getInstance();
+		
+	}
+	
+	public static ComputerCtr getInstance() {
+	       if (instance == null) {
+	            instance = new ComputerCtr();
+	        }
+	        return instance;
+	    }
+	
+	public void afficherListeComputer(){
+		List<Computer> computers= this.service.getListComputer();
+		this.computerCLI.afficherListeComputer(computers);
+	}
+	
+	
+	
+	
+
+}

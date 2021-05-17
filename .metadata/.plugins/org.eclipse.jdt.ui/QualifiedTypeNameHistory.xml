@@ -7,13 +7,21 @@
     <fullyQualifiedTypeName name="com.excylis.ui.CLI"/>
     <fullyQualifiedTypeName name="com.sun.tools.sjavac.server.SysInfo"/>
     <fullyQualifiedTypeName name="com.sun.java_cup.internal.runtime.Scanner"/>
-    <fullyQualifiedTypeName name="com.excilys.model.Computer"/>
     <fullyQualifiedTypeName name="java.sql.ResultSet"/>
+    <fullyQualifiedTypeName name="com.excilys.mapper.Mapper"/>
     <fullyQualifiedTypeName name="com.excilys.persistence.Dao"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="controlers.CLIControler"/>
+    <fullyQualifiedTypeName name="com.excylis.controlers.ComputerCtr"/>
     <fullyQualifiedTypeName name="com.excilys.service.Service"/>
+    <fullyQualifiedTypeName name="com.excilys.ui.ComputerCLI"/>
+    <fullyQualifiedTypeName name="com.excilys.model.Computer"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="com.excilys.ui.MenuCLI"/>
+    <fullyQualifiedTypeName name="com.excilys.ui.CompagnyCLI"/>
+    <fullyQualifiedTypeName name="com.excylis.controlers.CompanyCtr"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="com.excilys.model.Company"/>
+    <fullyQualifiedTypeName name="com.excilys.ui.ChoixUtilisateur"/>
     <fullyQualifiedTypeName name="java.time.LocalDate"/>
-    <fullyQualifiedTypeName name="com.excilys.mapper.Mapper"/>
+    <fullyQualifiedTypeName name="com.excilys.model.Page"/>
 </qualifiedTypeNameHistroy>

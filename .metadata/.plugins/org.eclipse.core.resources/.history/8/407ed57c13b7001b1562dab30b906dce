@@ -1,0 +1,22 @@
+package com.excilys.ui;
+
+
+
+public class ChoixUtilisateur {
+
+	private static ChoixUtilisateur instance;
+	
+	private ChoixUtilisateur() {
+		
+	}
+	
+	public static ChoixUtilisateur getInstance() {
+	       if (instance == null) {
+	            instance = new ChoixUtilisateur();
+	        }
+	        return instance;
+	    }
+	
+	
+	
+}

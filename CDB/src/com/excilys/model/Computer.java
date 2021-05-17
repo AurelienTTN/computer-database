@@ -30,15 +30,9 @@ public class Computer {
 		
 		this.name = name;
 		this.company_id = company_id;
-		
-		if (dateEntree.isBefore(dateSortie)){
-			this.dateEntree=dateEntree;
-			this.dateSortie=dateSortie;
-		}
-		else {
-			this.dateEntree=null;
-			this.dateSortie=null;
-		}
+		this.dateEntree=dateEntree;
+		this.dateSortie=dateSortie;
+	
 	}
 	
 	

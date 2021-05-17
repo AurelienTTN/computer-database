@@ -1,0 +1,52 @@
+package com.excilys.ui;
+
+import java.time.LocalDate;
+import java.util.Scanner;
+
+public class ChoixUtilisateur {
+
+	private static ChoixUtilisateur instance;
+	
+	private ChoixUtilisateur() {
+		
+	}
+	
+	public static ChoixUtilisateur getInstance() {
+	       if (instance == null) {
+	            instance = new ChoixUtilisateur();
+	        }
+	        return instance;
+	    }
+	
+	public int choixMenu() {
+		Scanner sc = new Scanner(System.in);
+		return sc.nextInt();
+	}
+	
+	public int choixOrdinateur() {
+		System.out.println("Veuillez rentrer un numéro d'ordinateur à afficher");
+		Scanner sc = new Scanner(System.in);
+		return sc.nextInt();
+	}
+	
+	public String ChoixNom() {
+		System.out.println("Veuillez entre un nom d'ordinateur");
+		Scanner sc = new Scanner(System.in);
+		return sc.nextLine();
+	}
+	
+	public LocalDate choixDateEntree() {
+		System.out.println("Entrez le jour d'entrée de cet ordinateur");
+		int day_entry = scan_ordi.nextInt();
+		System.out.println("Entrez le mois d'entrée de cet ordinateur");
+		int month_entry = scan_ordi.nextInt();
+		System.out.println("Entrez l'année d'entrée de cet ordinateur");
+		int year_entry = scan_ordi.nextInt();
+		return LocalDate.of(year_entry,month_entry,day_entry);
+	}
+	
+	
+	
+	
+	
+}

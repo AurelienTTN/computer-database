@@ -1,0 +1,20 @@
+package com.excylis.controlers;
+
+public class ComputerCtr {
+	
+
+	private static ComputerCtr instance;
+
+	
+	private ComputerCtr() {
+		
+	}
+	
+	public static ComputerCtr getInstance() {
+	       if (instance == null) {
+	            instance = new ComputerCtr();
+	        }
+	        return instance;
+	    }
+
+}

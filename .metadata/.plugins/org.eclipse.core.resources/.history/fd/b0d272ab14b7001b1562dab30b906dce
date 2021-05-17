@@ -1,0 +1,27 @@
+package com.excylis.controlers;
+
+import com.excilys.service.Service;
+import com.excilys.ui.ComputerCLI;
+
+public class CompagnyCtr {
+	
+
+	private static CompagnyCtr instance;
+	private Service service;
+	private CompagnyCLI compagnyCLI;
+
+	
+	private CompagnyCtr() {
+		this.service = Service.getInstance();
+		this.compagnyCLI = CompagnyCLI.getInstance();
+		
+	}
+	
+	public static CompagnyCtr getInstance() {
+	       if (instance == null) {
+	            instance = new CompagnyCtr();
+	        }
+	        return instance;
+	    }
+
+}

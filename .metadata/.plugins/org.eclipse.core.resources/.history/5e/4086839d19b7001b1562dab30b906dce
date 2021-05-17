@@ -1,0 +1,48 @@
+package com.excylis.controlers;
+
+
+import java.util.List;
+
+import com.excilys.model.Computer;
+import com.excilys.service.Service;
+import com.excilys.ui.ChoixUtilisateur;
+import com.excilys.ui.ComputerCLI;
+
+public class ComputerCtr {
+	
+
+	private static ComputerCtr instance;
+	private Service service;
+	private ComputerCLI computerCLI;
+	private ChoixUtilisateur choixUtilisateur;
+
+	
+	private ComputerCtr() {
+		this.service = Service.getInstance();
+		this.computerCLI = ComputerCLI.getInstance();
+		this.choixUtilisateur = ChoixUtilisateur.getInstance();
+		
+	}
+	
+	public static ComputerCtr getInstance() {
+	       if (instance == null) {
+	            instance = new ComputerCtr();
+	        }
+	        return instance;
+	    }
+	
+	public void afficherListeComputers(){
+		List<Computer> computers= this.service.getListComputer();
+		this.computerCLI.afficherListeComputers(computers);
+	}
+	
+	public void afficherUnOrdinateur() {
+		int id = choixUtilisateur.choixOrdinateur();
+		Computer computer = this.service.getOneComputer(id);
+	}
+	
+	
+	
+	
+
+}

@@ -14,53 +14,55 @@ import com.excilys.persistence.Dao;
 public final class Service {
 	
 	    private static Service instance;
-	    public String value;
 	    private Dao base;
 	    private Mapper mappy;
 	    
 
-	    private Service(String value) {
+	    private Service() {
 
 	        try {
 	            Thread.sleep(1000);
 	        } catch (InterruptedException ex) {
 	            ex.printStackTrace();
 	        }
-	        this.value = value;
 	        
 	        String url = "jdbc:mysql://127.0.0.1:3306/computer-database-db";
 			String name = "admincdb";
 			String passwd = "qwerty1234";
 					
-			this.base = new Dao(url,name,passwd);
+			this.base = com.excilys.persistence.Dao.getInstance(url,name,passwd);
 			this.base.connection();  
 			this.mappy= new Mapper();
 	    }
 
-	    public static Service getInstance(String value) {
+	    public static Service getInstance() {
 	        if (instance == null) {
-	            instance = new Service(value);
+	            instance = new Service();
 	        }
 	        return instance;
 	    }
 	    
 	    
 	
-	public List <Computer> showListComputer() throws SQLException{
-		
+	public List <Computer> getListComputer(){
 		return this.base.listeComputer();
-		
 	}
 	
-	public List <Company> showListCompany() throws SQLException{
-		
+	
+	public List <Company> getListCompany(){
 		return this.base.listeCompanies();
+			
 	}
 	
-	public Computer showOneComputer(int id)throws SQLException{
-		
+	
+	public Computer getOneComputer(int id){
 		return this.base.oneComputer(id);
+		
 	} 
+	
+	public int getNombreTotalComputer() {
+		return this.base.getNombreTotalOrdinateur();
+	}
 	
 	public List <Computer> affichageParPage(int num_page) throws SQLException {
 		int nb_max = this.base.nombreOrdinateur();
@@ -69,10 +71,11 @@ public final class Service {
 		return this.base.listeSpecifiquesComputers(index[0],index[1]);
 	}
 	
+	
 	public Computer creerComputer(String name,LocalDate date1, LocalDate date2, int id_company) {
-		
 		return this.mappy.createComputer(name,date1,date2,id_company);
 	}
+	
 	
 	public void ajouterComputer(String name,LocalDate date1, LocalDate date2, int id_company) {
 		Computer pc = creerComputer(name,date1,date2,id_company);

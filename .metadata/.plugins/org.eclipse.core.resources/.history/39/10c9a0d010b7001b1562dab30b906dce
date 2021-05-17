@@ -1,0 +1,32 @@
+package com.excilys.ui;
+
+import com.excilys.model.Computer;
+import com.excilys.service.Service;
+
+public class ComputerCLI {
+	
+	private static ComputerCLI instance;
+	
+	private ComputerCLI() {
+		
+	}
+	
+	
+	public static ComputerCLI getInstance() {
+        if (instance == null) {
+            instance = new ComputerCLI();
+        }
+        return instance;
+    }
+	public void afficherComputer(Computer computer) {
+		System.out.println(computer);
+	}
+	
+	public void afficherListeComputer(List<Computer> computers) {
+		for(Computer c : computers) {
+			this.afficherComputer(c);
+		}
+	}
+	
+	
+}

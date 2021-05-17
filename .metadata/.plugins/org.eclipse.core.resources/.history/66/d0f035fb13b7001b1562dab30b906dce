@@ -1,0 +1,24 @@
+package com.excylis.controlers;
+
+
+public class CLIControler {
+	
+	private static CLICtr instance;
+
+	
+	private CLIControler() {
+		
+	}
+	
+	public static CLICtr getInstance() {
+	       if (instance == null) {
+	            instance = new CLICtr();
+	        }
+	        return instance;
+	    }
+	
+	
+	
+	
+	    
+}
