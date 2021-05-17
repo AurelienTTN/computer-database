@@ -1,0 +1,34 @@
+package com.excilys.ui;
+
+public class Page {
+	
+	private static final int NB_ELEMENT=20;
+	
+	
+	public void Page(int nb_total_element) {
+		
+	}
+	
+	public void afficherPage() {
+		for (Computer pc : computers) {
+			
+		}
+		
+	}
+	
+	
+	
+	public void afficherPagePrecedente() {
+		NUM_PAGE-=1;
+		
+	}
+	
+	public void afficherPageSuivante() {
+		NUM_PAGE+=1;
+	}
+	
+	
+	
+	
+	
+}

@@ -40,6 +40,7 @@ public class CLI {
 			System.out.println("Ajouter un nouvel ordinateur - 4 ");
 			System.out.println("Mettre à jour un certain ordinateur - 5 ");
 			System.out.println("Effacer un ordinateur - 6\n");
+			System.out.println("Affichage par page des ordinateurs- 7\n");
 			System.out.println("Quitter - 0\n");
 			
 			System.out.println("Faites votre choix :");
@@ -153,12 +154,55 @@ public class CLI {
 					}	
 					break;
 				}
-				case 6:
+				case 6:{
 					System.out.println("Entrez l'id de l'ordinateur a enlever.");
 					Scanner scan_ordi = new Scanner(System.in);
 					int id_comp = scan_ordi.nextInt();
 					services.effacerComputer(id_comp);
 					break;
+					}
+				
+				case 7:{
+					System.out.println("Affichage par page des ordinateurs");
+					boolean continuer = true;
+					int num_page = 1;
+					List <Computer> computers = services.affichageParPage(num_page);
+					for(Computer pc : computers)
+						System.out.println(pc);
+					while(continuer) {
+						System.out.println("Page suivante [1]  Page précedente[2] Rentrer un numéro de page [3]");
+						Scanner scan_ordi = new Scanner(System.in);
+						int dchoix = scan_ordi.nextInt();
+						switch(dchoix){
+						case 1 :{
+							num_page+=1;
+							computers = services.affichageParPage(num_page);
+							for(Computer pc : computers)
+								System.out.println(pc);
+							break;
+						}
+						case 2 :{
+							num_page-=1;
+							computers = services.affichageParPage(num_page);
+							for(Computer pc : computers)
+								System.out.println(pc);
+							break;
+						}
+						case 3:{
+							System.out.println("Veuillez rentrer un numéro de page à afficher");
+							Scanner scan = new Scanner(System.in);
+							num_page = scan.nextInt();
+							computers = services.affichageParPage(num_page);
+							for(Computer pc : computers)
+								System.out.println(pc);
+						}
+					}
+					}
+					break;
+					
+				}
+					
+					
 					
 				
 			}

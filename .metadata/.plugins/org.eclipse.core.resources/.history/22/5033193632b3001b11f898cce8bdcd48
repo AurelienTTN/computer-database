@@ -1,0 +1,14 @@
+package com.excilys.ui;
+
+public class Page {
+	
+
+	private final static NB_LIGNE = 20;
+	private static 
+	
+	public void Page() {
+		
+		
+	}
+
+}

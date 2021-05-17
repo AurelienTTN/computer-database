@@ -1,0 +1,28 @@
+package com.excilys.ui;
+
+public class Page {
+	
+	private static final int NB_ELEMENT=20;
+	private static int NUM_PAGE = 1;
+	
+	
+	public void Page() {
+	}
+	
+	public void afficherPage() {
+		
+	}
+	
+	public void afficherPagePrecedente() {
+		NUM_PAGE-=1;
+		
+	}
+	
+	public void afficherPageSuivante() {
+		NUM_PAGE+=1;
+		
+	}
+	
+	
+	
+}

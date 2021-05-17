@@ -1,0 +1,21 @@
+package com.excilys.ui;
+
+public class Page {
+	
+
+	private final static int NB_LIGNE = 20;
+	private final static int NB_Page=1; 
+	
+	public void Page() {
+		
+	}
+	
+	public void afficherPage() {
+		
+		System.out.println();
+	}
+	
+	
+	
+	
+}

@@ -47,9 +47,42 @@ public class Dao {
 		     
 	}
 	
+	public int nombreOrdinateur() throws SQLException {
+		String query = "SELECT * FROM computer;";
+		ResultSet results = null;
+		int count=0;
+		try {
+			Statement stmt = this.con.createStatement();
+			results = stmt.executeQuery(query);
+			while(results.next()) {
+				count++;
+			}
+		}catch(Exception e) {
+			System.out.println(e+"exception due a la requete");
+		}
+
+		return count;
+	}
+		
+
+	
+	public List <Computer> listeSpecifiquesComputers(int debut,int fin) throws SQLException {
+		String query = "SELECT * FROM computer WHERE id BETWEEN "+debut+" AND "+fin+";";
+		ResultSet results=null;
+		
+		try {
+			Statement stmt = this.con.createStatement();
+			results = stmt.executeQuery(query);
+		}catch(Exception e) {
+			System.out.println(e+"exception due a la requete");
+		}
+			
+		return this.mappy.dataToListComputer(results);
+	}
+	
 	//Renvoie la liste des PC
 	
-	public List <Computer> ListeComputer() throws SQLException {
+	public List <Computer> listeComputer() throws SQLException {
 		String query = "SELECT * FROM computer;";
 		ResultSet results=null;
 		
@@ -64,7 +97,7 @@ public class Dao {
 	}
 	
 	//Renvoie la liste des compagnies
-	public List<Company> ListeCompanies() throws SQLException {
+	public List<Company> listeCompanies() throws SQLException {
 		String query = "SELECT * FROM company;";
 		ResultSet results=null;
 		
@@ -79,7 +112,7 @@ public class Dao {
 	}
 	
 	//renvoie un seul pc en fonction de son ID
-	public Computer OneComputer(int id) throws SQLException {
+	public Computer oneComputer(int id) throws SQLException {
 		String query = "SELECT * FROM computer WHERE id="+id+";";
 		ResultSet results=null;
 
@@ -94,6 +127,7 @@ public class Dao {
 				
 	}
 	
+	//Ajoute un pc en fonction des données rentrées par l'utilisateur
 	public void ajouterUnComputer(Computer c) {
 		
 		String name = c.getName();
@@ -116,109 +150,7 @@ public class Dao {
 	}
 	
 	
-	
-		
-		
-		
-		
-/*
-	public void afficherListeComputer() {
-		String query = "SELECT * FROM computer;";
-		ResultSet results;
-		try {
-		Statement stmt = this.con.createStatement();
-		results = stmt.executeQuery(query);
-		while(results.next()) {
-			int id = results.getInt(1);
-			String name = results.getString(2);
-			int num_company = results.getInt(5);
-			LocalDate date= LocalDate.of(2020,1,1);
-			LocalDate date2 = LocalDate.of(2020,1,1);
-			
-			if (results.getDate(3) != null) {
-				date = results.getDate(3).toLocalDate();
-			}
-			if (results.getDate(4) != null) {
-				date2 = results.getDate(4).toLocalDate();
-			}
-			
-			System.out.println(id+" "+name+" "+num_company+" "+date+" "+date2);
-		}
-		
-		}
-		catch(Exception e)
-			{System.out.println(e+"exception due a la requete");
-		}
-	}
-	
-	public void afficherListeCompagnies() {
-		String query = "SELECT * FROM company;";
-		ResultSet results;
-		try {
-			Statement stmt = this.con.createStatement();
-			results = stmt.executeQuery(query);
-		while(results.next()) {
-			int id = results.getInt(1);
-			String name = results.getString(2);
-			System.out.println(id+" "+name);
-		}
-		
-		}
-		catch(Exception e)
-			{System.out.println(e+"exception due a la requete");
-		}
-	}
-	
-	public void afficherUnComputer(int id) {
-		
-		String query = "SELECT * FROM computer WHERE id="+id+";";
-		ResultSet results;
-		try {
-			Statement stmt = this.con.createStatement();
-			results = stmt.executeQuery(query);
-			int idres;
-			String name;
-			while (results.next()) {
-				idres = results.getInt(1);
-				name = results.getString(2);
-				System.out.println(idres +" "+name);
-			}
-		}
-		catch(Exception e)
-			{System.out.println(e+"exception due a la requete");
-		}
-
-	}
-	*/
-	
-	/*
-	// Gérer les dates fixer à null pour l'ajout
-	public void ajouterUnComputer(Computer c) {
-	
-		String name = c.getName();
-		LocalDate date_entree_pc = c.getEntryDate();
-		LocalDate date_sortie_pc=c.getOutDate();
-		int company_id = c.getIdCompany();
-		try {
-			PreparedStatement ps = this.con.prepareStatement(AJOUT_ONE_COMPUTER);
-			
-			ps.setString(1,name);
-			ps.setDate(2, Date.valueOf(date_entree_pc));
-			ps.setDate(3, Date.valueOf(date_sortie_pc));			
-			ps.setInt(4, company_id);
-			
-			ps.executeUpdate();
-			
-		}
-		catch(Exception e)
-			{System.out.println(e+"exception due a la requete");
-		}
-	}
-		*/
-	
-	// Cette méthode permet d'update un computer selon son id, on doit séletionner le champ à changer et sa valeur.
-	// A Ajouter : test sur les classes des chhamps
-	
+	// Mets à jour le champ spécifié par l'utilisateur
 	public void updateComputer(int id, int colonne, Object value) {
 		
 		
@@ -280,6 +212,7 @@ public class Dao {
 		}
 	}
 	
+	// efface un pc à l'ID correspondand
 	public void deleteComputer(int id) {
 		
 		try {

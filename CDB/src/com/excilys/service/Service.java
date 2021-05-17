@@ -5,7 +5,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 import com.excilys.mapper.Mapper;
-import com.excilys.model.*;
+import com.excilys.model.Company;
+import com.excilys.model.Computer;
+import com.excilys.model.Page;
 import com.excilys.persistence.Dao;
 
 
@@ -46,19 +48,26 @@ public final class Service {
 	
 	public List <Computer> showListComputer() throws SQLException{
 		
-		return this.base.ListeComputer();
+		return this.base.listeComputer();
 		
 	}
 	
 	public List <Company> showListCompany() throws SQLException{
 		
-		return this.base.ListeCompanies();
+		return this.base.listeCompanies();
 	}
 	
 	public Computer showOneComputer(int id)throws SQLException{
 		
-		return this.base.OneComputer(id);
+		return this.base.oneComputer(id);
 	} 
+	
+	public List <Computer> affichageParPage(int num_page) throws SQLException {
+		int nb_max = this.base.nombreOrdinateur();
+		Page page = com.excilys.model.Page.getInstance(257);
+		int[] index = page.getIndex(num_page);
+		return this.base.listeSpecifiquesComputers(index[0],index[1]);
+	}
 	
 	public Computer creerComputer(String name,LocalDate date1, LocalDate date2, int id_company) {
 		
@@ -77,6 +86,7 @@ public final class Service {
 	public void effacerComputer(int id) {
 		this.base.deleteComputer(id);
 	}
+	
 	
 	
 }
