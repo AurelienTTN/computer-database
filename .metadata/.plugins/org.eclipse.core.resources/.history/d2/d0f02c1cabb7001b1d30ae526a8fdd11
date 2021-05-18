@@ -2,8 +2,8 @@ package com.excilys.ui;
 
 import java.sql.SQLException;
 
-import com.excilys.controlers.CompanyCtr;
-import com.excilys.controlers.ComputerCtr;
+import com.excylis.controlers.CompanyCtr;
+import com.excylis.controlers.ComputerCtr;
 
 public class MenuCLI {
 	

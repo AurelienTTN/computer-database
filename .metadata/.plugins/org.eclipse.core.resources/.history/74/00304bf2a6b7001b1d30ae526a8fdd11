@@ -1,6 +1,6 @@
 package com.excilys.service;
 
-
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -64,7 +64,7 @@ public final class Service {
 		return this.base.getNombreTotalOrdinateur();
 	}
 	
-	public List <Computer> getElementPage(int index_debut,int nb_element) {
+	public List <Computer> affichageParPage(int index_debut,int nb_element) {
 		return this.base.listeSpecifiquesComputers(index_debut,nb_element);
 	}
 	

@@ -1,7 +1,6 @@
 import java.io.IOException;
 import java.sql.SQLException;
 
-
 import com.excilys.ui.MenuCLI;
 
 public class Main {
@@ -11,7 +10,6 @@ public class Main {
 		MenuCLI menu = MenuCLI.getInstance();
 		while(true) {
 			menu.useMenu();
-			
 		}
 
 	}

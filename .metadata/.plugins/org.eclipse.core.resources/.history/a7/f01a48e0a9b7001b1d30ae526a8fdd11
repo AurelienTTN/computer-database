@@ -71,7 +71,7 @@ public class ChoixUtilisateur {
 	}
 	
 	public int choixMenuPage() {
-		System.out.println("Page précedente [1] Page Suivante [2] Numéro de Page Spécifique [3] Quitter [0]");
+		System.out.println("Page précedente [1] Page Suivante [2] Numéro de Page Spécifique [3] Quitter [4]");
 		Scanner choix = new Scanner(System.in);
 		return choix.nextInt();
 	}

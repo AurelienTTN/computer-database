@@ -11,7 +11,6 @@ public class Main {
 		MenuCLI menu = MenuCLI.getInstance();
 		while(true) {
 			menu.useMenu();
-			
 		}
 
 	}
